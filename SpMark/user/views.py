@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -8,16 +9,16 @@ from django.views import View
 class RegisterView(View):
     # 用户注册
     def get(self, request):
-        pass
+        return render(request, 'user/reg.html')
 
     def post(self, request):
         pass
 
 
-class Login(View):
+class LoginView(View):
     # 用户登陆
     def get(self, request):
-        pass
+        return render(request, 'user/login.html')
 
     def post(self, request):
         pass
@@ -26,7 +27,7 @@ class Login(View):
 class CenterView(View):
     # 个人中心
     def get(self, request):
-        pass
+        return render(request, 'user/member.html')
 
     def post(self, request):
         pass
@@ -35,7 +36,7 @@ class CenterView(View):
 class AddressView(View):
     # 收货地址
     def get(self, request):
-        pass
+        return render(request, 'user/address.html')
 
     def post(self, request):
         pass
@@ -44,7 +45,7 @@ class AddressView(View):
 class InfoView(View):
     # 个人资料
     def get(self, request):
-        pass
+        return render(request, 'user/infor.html')
 
     def post(self, request):
         pass
