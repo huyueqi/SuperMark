@@ -1,0 +1,40 @@
+{% extends 'just so so/moban.html' %}
+
+{% load static %}
+
+
+{% block heather %}
+        <input type="text" name="mobile" id="mobile" placeholder="请输入用户名/手机号" class="login-name">
+	    <input type="password" name="password" id="password" placeholder="请输入密码" class="login-password">
+	    <input type="button" class="login-btn" value="我要登录">
+	    <div class="agree">
+	    	<a href="reg.html">免费注册</a>
+	    	<a href="forgetpassword.html" class="forget">忘记密码？</a>
+	    </div>
+	    <div class="line"></div>
+	    <div class="line-text">第三方账号登录</div>
+	    <ul class="second-login">
+	    	<li><a href=""><img src="{% static 'images/wxlogin.png' %}"/></a></li>
+	    	<li><a href=""><img src="{% static 'images/qqlogin.png' %}"/></a></li>
+	    	<li><a href=""><img src="{% static 'images/sinalog.png' %}"/></a></li>
+	    </ul>
+{% endblock %}
+
+
+{% block connect %}
+        <input type="text" name="mobile"  placeholder="请输入手机号" class="login-name">
+	    <input type="text" name="mobile"  placeholder="请输入密码" class="login-password">
+	    <input type="password" name="password"  placeholder="确认密码" class="login-name">
+	    <div class="yzm" style="margin-top: 1.5rem;">
+	    	<input type="text" class="reg-yzm" placeholder="输入验证码" />
+	    	<input type="button" class="yzm-hq" value="获取验证码" />
+	    </div>
+	     <input type="button" class="login-btn" value="立即注册">
+	    <div class="agree">
+	    	<input type="checkbox" name="checkbox" value="同意" checked="">&nbsp;同意
+		    <a href="" class="xy">《用户协议》</a>
+		      <div class="r-login">已有账号，请<a href="login.html" class="l-login">登录</a></div>
+	    </div>
+{% endblock %}
+
+
