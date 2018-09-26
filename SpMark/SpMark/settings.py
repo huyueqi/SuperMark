@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',  # 全文检索框架
     'user',  # 用户模块
+    'cargo',  # 货品模块
+    'ckeditor',  # 添加ckeditor富文本编辑器
+    'ckeditor_uploader',  # 添加ckeditor富文本编辑器文件上传部件
 ]
 
 MIDDLEWARE = [
@@ -66,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',  # 上传图片渲染器
             ],
         },
     },
@@ -116,11 +121,30 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+# 设置静态文件根目录,上线的时候使用
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# # 图片的配置
+MEDIA_URL = "/static/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+# # 七牛云密钥等配置
+# QINIU_ACCESS_KEY = '_DcZkURQjr-agBB38EYHYdDVCiDLNQMSPgAUbxFI'
+# QINIU_SECRET_KEY = 't0eLBfO7GGoJmHjWwzPbOzqxDvEDY2q5mMcigbRS'
+# QINIU_BUCKET_NAME = '空间名'
+# QINIU_BUCKET_DOMAIN = 'pflumv8rj.bkt.clouddn.com/'
+# QINIU_SECURE_URL = False      #使用http
+# PREFIX_URL = 'http://'
+#
+# # 上传文件地址配置
+# MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN + "/"
+# # 上传文件的存储引擎配置
+# DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuStorage'
+
 
 # redis缓存配置
 CACHES = {
@@ -136,3 +160,29 @@ CACHES = {
 # 配置session的存储引擎
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+# 配置ckeditor的上传目录
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# 编辑器样式配置
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
+
+# 全文检索框架的配置
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        # # 配置搜索引擎
+        # 'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        # # 配置索引文件目录
+        # 'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+        # 中文分词 使用jieba的whoosh引擎
+        'ENGINE': 'haystack.backends.whoosh_cn_backend.WhooshEngine',
+        # 配置索引文件目录
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+# 当添加、修改、删除数据时，自动生成索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

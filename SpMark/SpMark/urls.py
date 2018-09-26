@@ -13,10 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
+
+from cargo.views import IndexView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # 全文搜索框架
+    url(r'^search/', include('haystack.urls')),
+    # 富文本编辑
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    # 商城首页
+    url(r'^$', IndexView.as_view(), name='index'),
+    # 用户路径
     url(r'^user/', include('user.urls', namespace='user')),
+    # 商品路径
+    url(r'^cargo/', include('cargo.urls', namespace='cargo')),
 ]
+
+# urlpatterns += static(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+
+
+# settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
