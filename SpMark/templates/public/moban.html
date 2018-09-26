@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>
+            {% block meta_title %}
+                超市
+            {% endblock %}
+        </title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link href="{% static 'css/amazeui.min.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+		<script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+		<script src="{% static 'js/time.js' %}"></script>
+		<script src="{% static 'js/popup.mini.js' %}"></script>
+        <link href="{% static 'css/check.css' %}" rel="stylesheet" type="text/css" />
+        <script src="{% static 'js/area.js' %}"></script>
+
+
+        {% block meta_css %}{% endblock %}
+        {% block meta_jss %}{% endblock %}
+
+	</head>
+	<body>
+        {% block heather %}
+
+        {% endblock %}
+	    <div style="height: 49px;"></div>
+
+	    <div style="height: 3rem;"></div>
+        {% block connect %}
+            
+        {% endblock %}
+        
+        {% block footer %}
+        
+        {% endblock %}
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/amazeui.min.js' %}"></script>
+
+        {% block footer_js %}
+        
+        {% endblock %}
+
+
+    </body>
+</html>
